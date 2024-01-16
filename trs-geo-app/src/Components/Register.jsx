@@ -23,7 +23,7 @@ function Register() {
         e.preventDefault()
         axios.post("https://sourcingmagic-backend.onrender.com/register", state)
         .then(() => {
-            navigate("/login")
+            navigate("/Products")
         }) 
         .catch((error) => {
         });

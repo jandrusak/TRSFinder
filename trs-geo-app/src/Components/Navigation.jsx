@@ -91,7 +91,7 @@ export function MenuAppBar({ userLoggedIn, setUserLoggedIn }) {
         </Toolbar>
       </AppBar>
     </Box>
-  );
+  ); 
 }
 
 export default MenuAppBar;

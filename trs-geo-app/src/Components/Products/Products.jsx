@@ -41,7 +41,7 @@ const Products = () => {
   return (
       <div className="card-container">
         {
-            props.products.map((product)=>(
+            products.map((product)=>(
                 //create card here maybe using MUI
                 <div key={product.product_id} >
                     <h5>
