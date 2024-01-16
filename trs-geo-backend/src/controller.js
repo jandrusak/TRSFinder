@@ -1,6 +1,6 @@
 let db = require("./db");
 
-//USERS CONTROLLERS
+//USERS CONTROLLERS COMPLETED
 let getAllUsers = function(req, res){
     let sql = 'select * from users'
     db.query(sql, function(err, results){
@@ -51,29 +51,46 @@ let deleteUsers = function(req, res){
 let updateUsers = function(req, res){
     let id = req.params.id;
     let { email, pwd, city, full_name } = req.body;
-    let sql = "UPDATE users set email = ?, pwd = ?, city = ?, full_name = ? WHERE id = ?";
-    let params = [email, pwd, city, full_name, id];
 
+    let updates = [];
+    let params = [];
+    if (email!==undefined) {
+        updates.push("email = ?");
+        params.push(email);
+    }
+    if (pwd !==undefined) {
+        updates.push("pwd = ?");
+        params.push(pwd);
+    }
+    if (city!==undefined) {
+        updates.push("city = ?");
+        params.push(city);
+    }
+    if (full_name!==undefined) {
+        updates.push("full_name = ?");
+        params.push(full_name);
+    }
+    if (updates.length ===0) {
+        return res.status(400).send("no fields provided for update");   
+    }
+    params.push(id);
+
+    let sql = `UPDATE users SET ${updates.join(", ")} WHERE user_id = ?`;
     db.query(sql, params, function(err, results){
         if (err){
                 console.log("update failed", err);
                 res.sendStatus(500);
         }   else {
                 if(results.affectedRows === 0){
-                    res.sendStatus(204); 
+                    res.sendStatus(404); 
                 } else {
                     res.json({message: "Update Successful", results});
                 }
         }
-    })
+    });
 };
 
-
-
-
-
-
-
+ 
 //PRODUCTS CONTROLLERS
 let getAllProducts = function(req, res){
     let sql = 'select * from Products'
@@ -90,7 +107,7 @@ let getAllProducts = function(req, res){
         }
     })
 };
-
+//not needed at this time
 let addProducts = function(req, res){
     let { name, address, city, type, website_address, phone } = req.body;
 
@@ -111,9 +128,29 @@ let addProducts = function(req, res){
 };
 
 let getProductById = function(req, res){
-    let id = req.params.id;
-    let sql = 'select * from Products where school_id = ?'
-    let params = [id]
+    let { school_id, name, address, city, type, zip, county, district_name, district_city } = req.query;
+    let sql = 'select * from Products where';
+    let conditions = [];
+    let params = [];
+
+    if(school_id) {
+        conditions.push(" school_id = ?");
+        params.push(school_id);
+    }
+    if(name) {
+        conditions.push(" name LIKE ?");
+        params.push(`%${name}%`);
+    }
+    if(address) {
+        conditions.push(" address LIKE ?");
+        params.push(`%${address}%`);
+    }
+    if(conditions.length===0) {
+        return res.status(400).send("No search criteria provided");
+    }
+
+    sql += conditions.join(" AND ");
+
     db.query(sql, params, function(err, results){
         if (err){
                 console.log("failed", err);
@@ -163,10 +200,6 @@ let updateProduct = function(req, res){
         }
     })
 };
-
-
-//need to add addproductsbyuserid
-
 
 //CARTS CONTROLLERS
 let getAllCarts = function(req, res){
@@ -289,74 +322,3 @@ module.exports = {
     addProductByUId,
     addToCartByProductId
 };
-
-//examples from previous assignments:
-
-// let addEntries = function(req, res){
-//     let title = req.body.title;
-//     let notes = req.body.notes;
-
-//     if(!title) {
-//         res.status(400).json("Title is required"); 
-//         return;
-//     }
-    
-//     let sql = "insert into entries (title, notes) values (?, ?);"
-//     let params = [title, notes];
-
-//     db.query(sql, params, function(err, results){
-//         if(err){
-//             console.log("Failed to insert into the database", err);
-//             res.sendStatus(500); 
-//         } else {
-//             res.sendStatus(204);
-//         }
-//     })
-// };
-
-
-
-// let listUsers = function(req, res){
-//     let sql = " select email, first_name, last_name from entries;"
-    
-//     db.query(sql, function(err, results){
-//         if(err){
-//             console.log("failed to query database", err);
-//             res.sendStatus(500); 
-//         } else {
-//             res.json(results);                
-
-//         }
-//     });
-// }; 
-
-
-// let updateEntries = function(req, res){
-//     let id = req.params. id; 
-//     let title = req.body.notes;
-//     let notes = req.body.notes;
-//     let done = req.body.done;
-
-//     if(!title) {
-//         res.status(400).json("Title is required"); 
-//         return;
-//     }
-//     let done2 = false; 
-//     if(done == true){
-//         done2=true
-//     }
-//     let sql = "update entries set title = ?, notes =?, done =? where id =?"
-//     let params = [title, notes, done2, id]
-
-//     db.query(sql, params, function(err, results){
-//         if(err){
-//             console.log("Failed to update datebase", err);
-//             res.sendStatus(500);
-//         }   else {
-//             res.sendStatus(204);
-//         }
-//     })
-// };
-
-
-
