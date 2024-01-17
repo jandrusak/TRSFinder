@@ -8,9 +8,7 @@ function Register() {
     const [state, setState] = useState({ 
         email: "",
         pwd: "", 
-        first_name: "", 
-        last_name: "",
-        phone: "",
+        city: "",
     })
 
     const navigate = useNavigate()
@@ -52,27 +50,11 @@ function Register() {
            <TextField
             required
             onChange={handleChange}
-            value={state.first_name}
-            name="first_name"
-            label="First Name"
+            value={state.city}
+            name="city"
+            label="City"
             type="text"
           />
-           <TextField
-          required
-          onChange={handleChange}
-          value={state.last_name}
-          name="last_name"
-          label="Last Name"
-          type="text"
-        /> 
-        <TextField
-        required
-        onChange={handleChange}
-        value={state.phone}
-        name="phone"
-        label="Phone"
-        type="phone"
-      />
           <Button sx={{ backgroundColor: "#f6359d" }}
             type="submit"
             className="login-button"
