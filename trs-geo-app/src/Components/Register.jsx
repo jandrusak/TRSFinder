@@ -23,7 +23,7 @@ function Register() {
         e.preventDefault()
         axios.post("https://sourcingmagic-backend.onrender.com/register", state)
         .then(() => {
-            navigate("/Products")
+            navigate("/login")
         }) 
         .catch((error) => {
         });
@@ -79,7 +79,7 @@ function Register() {
             variant="contained"
             color="primary"
           >
-            Register
+            Submit
           </Button>
           <p>Already Registered? <Link to="/login">Login</Link></p>
         </form>
