@@ -24,6 +24,7 @@ function Register() {
             navigate("/login")
         }) 
         .catch((error) => {
+          console.error("registration error: ", error)
         });
     };
 

@@ -26,6 +26,7 @@ function Login({setUserLoggedIn}) {
             navigate('/')
         }) 
         .catch((error) => {
+          console.error("Login error: ", error);
           if (error.response && error.response.status === 401) {
             window.alert('Incorrect email or password.')
           } else {
