@@ -19,7 +19,11 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post("https://sourcingmagic-backend.onrender.com/register", state)
+        axios.post("https://sourcingmagic-backend.onrender.com/register", state, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
         .then(() => {
             navigate("/login")
         }) 
