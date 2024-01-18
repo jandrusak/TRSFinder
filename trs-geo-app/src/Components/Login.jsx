@@ -5,7 +5,7 @@ import cookie from "cookie"
 import { TextField, Button, Container } from "@mui/material";
 
 
-function Login(setUserLoggedIn) {
+function Login({setUserLoggedIn}) {
     const [state, setState] = useState({email: "", pwd: ""})
     const navigation = useNavigate();
 
