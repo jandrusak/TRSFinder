@@ -7,7 +7,7 @@ import { TextField, Button, Container } from "@mui/material";
 
 function Login({setUserLoggedIn}) {
     const [state, setState] = useState({email: "", pwd: ""})
-    const navigation = useNavigate();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setState({...state, [e.target.name]: e.target.value });
