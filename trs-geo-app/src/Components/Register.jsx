@@ -9,7 +9,7 @@ function Register() {
         email: "",
         pwd: "", 
         city: "",
-    })
+    });
 
     const navigate = useNavigate()
 
@@ -29,7 +29,7 @@ function Register() {
             console.error("error response: ", error.response);
           }
           });
-    
+        };
 
   return (
     <div>
