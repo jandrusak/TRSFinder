@@ -8,7 +8,7 @@ function Register() {
     const [state, setState] = useState({ 
         email: "",
         pwd: "", 
-        city: "",
+        city: ""
     });
 
     const navigate = useNavigate()
@@ -17,26 +17,23 @@ function Register() {
         setState({...state, [e.target.name]: e.target.value});
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        axios.post("https://sourcingmagic-backend.onrender.com/register", state, {
-          email: state.email,
-          pwd: state.pwd,
-          city: state.city
-    })
-        // headers: {
-        //     'Content-Type': 'application/json'
-        //   }
-        // })
-        .then(() => {
-            navigate("/login")
-        }) 
-        .catch((error) => {
+        try {
+          console.log('sending:', state);
+        const response = axios.post("https://sourcingmagic-backend.onrender.com/register", state, {
+        headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        console.log('response:', response);
+        navigate("/login");
+        } catch(error){
           console.error("registration error: ", error);
           if (error.response) {
             console.error("error response: ", error.response);
           }
-          });
+        }
         };
 
   return (
