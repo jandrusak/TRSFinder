@@ -10,7 +10,7 @@ const Products = () => {
   const cookies = cookie.parse(document.cookie);
 
   const fetchProducts = () => {
-    axios.get("https://sourcingmagic-backend.onrender.com/Products")
+    axios.get("https://trsfinder-backend.onrender.com/Products")
     .then((response) => {
       setProducts(response.data);
     })
@@ -20,7 +20,7 @@ const Products = () => {
   };
 
   const handleAddToCart = (product_id) => {
-      axios.post("https://sourcingmagic-backend.onrender.com/addCart" ,  {"productId": product_id},{
+      axios.post("https://trsfinder-backend.onrender.com/addCart" ,  {"productId": product_id},{
         headers: {
           Authorization: `Bearer ${cookies.token}`
         }

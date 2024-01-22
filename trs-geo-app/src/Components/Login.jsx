@@ -15,7 +15,7 @@ function Login({setUserLoggedIn}) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post("https://sourcingmagic-backend.onrender.com/login", {
+        axios.post("https://trsfinder-backend.onrender.com/login", {
             email: state.email,
             pwd: state.pwd,
         })

@@ -9,7 +9,7 @@ function ProductDetails(props) {
     const { productId } = useParams();
 
     useEffect(() => {        
-        axios.get(`https://sourcingmagic-backend.onrender.com/Products/${productId}`)
+        axios.get(`https://trsfinder-backend.onrender.com/Products/${productId}`)
         .then(response => {
             setProduct(response.data);
         })

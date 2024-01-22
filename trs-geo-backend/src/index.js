@@ -5,9 +5,9 @@ require("dotenv").config();
 
 
 app.use(cors(
-//     {
-//     // origin: 'https://trsfinder-frontend.onrender.com'
-// }
+    {
+    origin: 'https://trsfinder-frontend.onrender.com'
+}
 ))
 app.use(express.json());
 
