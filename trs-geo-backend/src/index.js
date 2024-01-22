@@ -3,8 +3,13 @@ const app = express();
 let cors = require("cors");
 require("dotenv").config();
 
+const corsOptions = {
+    origin: 'https://trsfinder-frontend.onrender.com', 
+    optionsSuccessStatus: 200,
+};
 
-app.use(cors());
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 //importing routes
@@ -19,10 +24,11 @@ const db = require('./db');
 
 //Test SQL query 
 let sql = "select now()";
-db.query(sql, function (err, results){
+db.query(sql, params, function (err, results){
     //what to do when query results come back? 
     if(err) {
         console.log("Running the query failed.", err);
+        return res.status(500).json({ error: err.message })
     }   else {
         console.log("The query was successful. => \n", results);
     }
