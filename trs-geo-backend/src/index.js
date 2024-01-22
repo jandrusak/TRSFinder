@@ -4,7 +4,7 @@ let cors = require("cors");
 require("dotenv").config();
 
 const corsOptions = {
-    origin: 'https://trsfinder-frontend.onrender.com', 
+    origin: ['http://localhost:5173', 'https://trsfinder-frontend.onrender.com'], 
     optionsSuccessStatus: 200,
 };
 
