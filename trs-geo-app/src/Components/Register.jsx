@@ -19,23 +19,21 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        console.log("sending:", state)
         try {
           console.log('sending:', state);
         const response = await axios.post("https://sourcingmagic-backend.onrender.com/register", state, {
-        headers: {
-            'Content-Type': 'application/json'
-          }
-        })
+        headers: {'Content-Type': 'application/json'}
+        });
         console.log('response:', response);
         navigate("/login");
-        } catch(error){
+        } catch(error) {
           console.error("registration error: ", error);
           if (error.response) {
             console.error("error response: ", error.response);
           }
         }
-        };
-
+      };
   return (
     <div>
         <Container maxWidth="sm">

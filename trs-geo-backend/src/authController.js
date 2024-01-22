@@ -4,6 +4,7 @@ let jwt = require("jsonwebtoken");
 
 //fetch the email and password with request
 let registerUser = async function(req, res){
+    console.log("request body:", req.body)
     // fetching from request
     let email = req.body.email;
     let password = req.body.pwd;
@@ -22,9 +23,10 @@ let registerUser = async function(req, res){
 
     db.query(sql, params, function(err, results){
         if(err){
-            console.log("Failed to register a user", err);
+            console.log("SQL error:", err);
             return res.sendStatus(500).json({error: err.message});
         }   else {
+            console.log("SQL Results:", results)
             let token = jwt.sign({email: email, id: results.insertId }, process.env.JWT_SECRET, {
             expiresIn: '1h'
                 // res.sendStatus(204);
