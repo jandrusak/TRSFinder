@@ -31,6 +31,7 @@ let registerUser = async function (req, res) {
         res.sendStatus(500).json({error: err.message});
         return;
     } 
+        console.log("insertion results", results)
         res.sendStatus(204);
     });
 };
