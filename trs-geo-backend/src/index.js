@@ -27,8 +27,7 @@ let sql = "select now()";
 db.query(sql, function (err, results){
     //what to do when query results come back? 
     if(err) {
-        console.log("Running the query failed.", err);
-        return res.status(500).json({ error: err.message })
+        console.error("Running the query failed.", err.message);
     }   else {
         console.log("The query was successful. => \n", results);
     }
