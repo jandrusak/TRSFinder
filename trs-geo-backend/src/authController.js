@@ -21,10 +21,8 @@ let registerUser = async function (req, res) {
     return;
   }
 
-  let sql = "insert into users (email, pwd, city) values (?, ?, ?)";
-  let params = [email, hash, city];
-
-  db.query(sql, params, function (err, results) {
+  let sql = "select now();";
+  db.query(sql, function (err, results) {
     if (err) {
       console.log("Failed to register a user", err);
       res.sendStatus(500);
@@ -32,6 +30,18 @@ let registerUser = async function (req, res) {
       res.sendStatus(204);
     }
   });
+
+  //   let sql = "insert into users (email, pwd, city) values (?, ?, ?)";
+  //   let params = [email, hash, city];
+
+  //   db.query(sql, params, function (err, results) {
+  //     if (err) {
+  //       console.log("Failed to register a user", err);
+  //       res.sendStatus(500);
+  //     } else {
+  //       res.sendStatus(204);
+  //     }
+  //   });
 };
 
 let loginUser = function (req, res) {
