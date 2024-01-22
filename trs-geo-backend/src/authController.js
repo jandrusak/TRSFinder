@@ -28,10 +28,10 @@ let registerUser = async function (req, res) {
     db.query(sql, params, function (err, results) {
       if (err) {
         console.log("Failed to register a user", err);
-        res.sendStatus(500);
-      } else {
+        res.sendStatus(500).json({error: err.message});
+        return;
+    } 
         res.sendStatus(204);
-      }
     });
 };
 
