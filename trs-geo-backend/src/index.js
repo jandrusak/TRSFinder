@@ -24,7 +24,7 @@ const db = require('./db');
 
 //Test SQL query 
 let sql = "select now()";
-db.query(sql, params, function (err, results){
+db.query(sql, function (err, results){
     //what to do when query results come back? 
     if(err) {
         console.log("Running the query failed.", err);
