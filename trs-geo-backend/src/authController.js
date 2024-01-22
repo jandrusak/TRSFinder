@@ -6,6 +6,7 @@ let registerUser = async function (req, res) {
   let email = req.body.email;
   let password = req.body.pwd;
   let city = req.body.city;
+  let full_name = req.body.full_name;
 
   if (!email) {
     res.status(400).json("email is required");
@@ -21,8 +22,8 @@ let registerUser = async function (req, res) {
     return;
   }
 
-    let sql = "insert into users (email, pwd, city) values (?, ?, ?)";
-    let params = [email, hash, city];
+    let sql = "insert into users (email, pwd, city, full_name) values (?, ?, ?, ?)";
+    let params = [email, hash, city, full_name];
 
     db.query(sql, params, function (err, results) {
       if (err) {
