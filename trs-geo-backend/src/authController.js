@@ -1,4 +1,4 @@
-let db = require("./db.js");
+let db = require("../src/db.js");
 let argon = require("argon2");
 let jwt = require("jsonwebtoken");
 
@@ -28,19 +28,18 @@ let registerUser = async function (req, res) {
     db.query(sql, params, function (err, results) {
       if (err) {
         console.log("Failed to register a user", err);
-        res.sendStatus(500).json({error: err.message});
-        return;
-    } 
-        console.log("insertion results", results)
+        res.sendStatus(500);
+    }   else {
         res.sendStatus(204);
-    });
+    }
+})
 };
 
 let loginUser = function (req, res) {
   let email = req.body.email;
   let password = req.body.pwd;
 
-  let sql = "select id, pwd from users where email = ?";
+  let sql = "select user_id, pwd from users where email = ?";
   let params = [email];
 
   db.query(sql, params, async function (err, results) {
@@ -64,9 +63,7 @@ let loginUser = function (req, res) {
           id: storedId,
           email: email,
         };
-        let signedToken = jwt.sign(token, process.env.Jwt_Secret, {
-          expiresIn: 432000,
-        });
+        let signedToken = jwt.sign(token, process.env.Jwt_Secret, {expiresIn: 432000})
         res.json(signedToken);
       } else {
         res.sendStatus(401);
@@ -81,4 +78,4 @@ let loginUser = function (req, res) {
 module.exports = {
   registerUser,
   loginUser,
-};
+}
