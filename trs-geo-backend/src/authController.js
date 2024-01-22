@@ -2,48 +2,132 @@ let db = require('./db.js');
 let argon = require("argon2");
 let jwt = require("jsonwebtoken");
 
-//fetch the email and password with request
-let registerUser = async function(req, res){
-    console.log("request body:", req.body);
+// //fetch the email and password with request
+// let registerUser = async function(req, res){
+//     console.log("request body:", req.body);
 
+//     // fetching from request
+//     let email = req.body.email;
+//     let password = req.body.pwd;
+//     let city = req.body.city;
+
+//     if(!email || !password || !city){
+//         return res.status(400).json({error: "all are required"});
+//     }
+//     try {
+//     //convert the password to its hash
+//     let hash = await argon.hash(password);
+//     let sql = "INSERT INTO users (email, pwd, city) values (?, ?, ?)";
+//     let params = [email, hash, city];
+//     console.log("success")
+//     // putting into database 
+
+//     db.query(sql, params, function(err, results){
+//         if(err){
+//             console.log("SQL error:", err);
+//             return res.sendStatus(500).json({error: err.message});
+//         }   else {
+//             console.log("SQL Results:", results);
+
+//             let token = jwt.sign({email: email, id: results.insertId }, process.env.JWT_SECRET, {
+//             expiresIn: '1h'
+//                 // res.sendStatus(204);
+//     });
+//     return res.status(201).json({message: "registration successful", token: token});
+// };
+//     });
+
+
+
+//     }catch(err){
+//         console.log("Failed to hash the password", err);
+//         return res.sendStatus(500).json({error: "server error while hashing password"});
+//     }
+// };
+
+
+
+
+
+let registerUser = async function(req, res){
     // fetching from request
     let email = req.body.email;
     let password = req.body.pwd;
     let city = req.body.city;
+    // let confirmPassword = req.body.confirmPassword;
 
-    if(!email || !password || !city){
-        return res.status(400).json({error: "all are required"});
+    //make sure the email is truthy
+    if(!email){
+        res.status(400).json("email is required");
+        return;
     }
-    try {
+
     //convert the password to its hash
-    let hash = await argon.hash(password);
-    let sql = "INSERT INTO users (email, pwd, city) values (?, ?, ?)";
+    let hash;
+    try {
+        hash = await argon.hash(password);
+    }catch(err){
+        //if for some reason the conversion fails, 
+        //then log the error, and response with a 500 code
+        console.log("Failed to hash the password", err);
+        res.sendStatus(500);
+        return;
+    }
+
+    //i ahve the hash and the email now. 
+    //
+    let sql = "insert into users (email, pwd, city) values (?, ?, ?)";
     let params = [email, hash, city];
-    console.log("success")
     // putting into database 
 
     db.query(sql, params, function(err, results){
         if(err){
-            console.log("SQL error:", err);
-            return res.sendStatus(500).json({error: err.message});
+            console.log("Failed to register a user", err);
+            res.sendStatus(500);
         }   else {
-            console.log("SQL Results:", results);
-
-            let token = jwt.sign({email: email, id: results.insertId }, process.env.JWT_SECRET, {
-            expiresIn: '1h'
-                // res.sendStatus(204);
-    });
-    return res.status(201).json({message: "registration successful", token: token});
+            res.sendStatus(204);
+        }
+    })
 };
-    });
 
 
 
-    }catch(err){
-        console.log("Failed to hash the password", err);
-        return res.sendStatus(500).json({error: "server error while hashing password"});
-    }
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 let loginUser = function(req, res){
     //1. get the email and password from the request. 
