@@ -4,19 +4,20 @@ let jwt = require("jsonwebtoken");
 
 //fetch the email and password with request
 let registerUser = async function(req, res){
-    console.log("request body:", req.body)
+    console.log("request body:", req.body);
+
     // fetching from request
     let email = req.body.email;
     let password = req.body.pwd;
     let city = req.body.city;
 
     if(!email || !password || !city){
-        return res.status(400).json("email is required");
+        return res.status(400).json({error: "all are required"});
     }
     try {
     //convert the password to its hash
     let hash = await argon.hash(password);
-    let sql = "insert into users (email, pwd, city) values (?, ?, ?)";
+    let sql = "INSERT INTO users (email, pwd, city) values (?, ?, ?)";
     let params = [email, hash, city];
     console.log("success")
     // putting into database 
@@ -26,12 +27,13 @@ let registerUser = async function(req, res){
             console.log("SQL error:", err);
             return res.sendStatus(500).json({error: err.message});
         }   else {
-            console.log("SQL Results:", results)
+            console.log("SQL Results:", results);
+
             let token = jwt.sign({email: email, id: results.insertId }, process.env.JWT_SECRET, {
             expiresIn: '1h'
                 // res.sendStatus(204);
     });
-    return res.status(200).json({message: "registration successful", token: token});
+    return res.status(201).json({message: "registration successful", token: token});
 };
     });
 

@@ -21,7 +21,6 @@ function Register() {
         e.preventDefault()
         console.log("sending:", state)
         try {
-          console.log('sending:', state);
         const response = await axios.post("https://sourcingmagic-backend.onrender.com/register", state, {
         headers: {'Content-Type': 'application/json'}
         });
