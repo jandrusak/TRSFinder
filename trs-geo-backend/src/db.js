@@ -1,6 +1,6 @@
 let mysql = require("mysql");
-require("dotenv").config
-const { config } = require("dotenv");
+require("dotenv").config()
+// const { config } = require("dotenv");
 
 let connection = mysql.createPool({
     user: process.env.Db_Username, 
