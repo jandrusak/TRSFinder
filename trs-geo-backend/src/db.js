@@ -2,6 +2,12 @@ let mysql = require("mysql");
 const { config } = require("dotenv");
 
 let connection = mysql.createPool({
+
+    connectionLimit : 10, // You might want to configure this based on your application's needs
+    connectTimeout  : 20000, // Increase connection timeout to 20 seconds
+    acquireTimeout  : 20000, // Increase acquire timeout to 20 seconds
+    timeout         : 20000,
+
     user: process.env.Db_Username, 
     password: process.env.Db_Password, 
     host: process.env.Db_Host,
