@@ -5,8 +5,8 @@ let getAllUsers = function(req, res){
     let sql = 'select * from users'
     db.query(sql, function(err, results){
         if (err){
-                console.log("failed", err);
-                res.sendStatus(500);
+                console.log("failed to execute query", err);
+                res.sendStatus(500).send("internal server error");
         }   else {
                 if(results.length == 0){
                     res.sendStatus(404); 

@@ -27,8 +27,12 @@ let registerUser = async function (req, res) {
 
     db.query(sql, params, function (err, results) {
       if (err) {
-        console.log("Failed to register a user", err);
-        res.sendStatus(500);
+        if (err) {
+          console.error("Error code:", err.code);
+          console.error("Error message:", err.message);
+          console.error("Error stack:", err.stack);
+          res.status(500).send({ message: "Failed to register a user", error: err.message });
+        }
     }   else {
         res.sendStatus(204);
     }
@@ -51,7 +55,7 @@ let loginUser = function (req, res) {
       console.log("Returned more than 1 user for the email", email);
     } else if (results.length == 1) {
       storedHash = results[0].pwd;
-      storedId = results[0].id;
+      storedId = results[0].user_id;
     } else if (results.length == 0) {
       console.log("did not find user for email", email);
     }
