@@ -1,4 +1,4 @@
-let db = require("./db");
+let db = require("../src/db");
 let argon = require("argon2");
 let jwt = require("jsonwebtoken");
 
@@ -26,14 +26,12 @@ let registerUser = async function (req, res) {
     let params = [email, hash, city, full_name];
 
     db.query(sql, params, function (err, results) {
-      if (err) {
         if (err) {
           console.error("Error code:", err.code);
           console.error("Error message:", err.message);
           console.error("Error stack:", err.stack);
           res.status(500).send({ message: "Failed to register a user", error: err.message });
-        }
-    }   else {
+        } else {
         res.sendStatus(204);
     }
 })
