@@ -8,7 +8,7 @@ let connection = mysql.createPool({
     acquireTimeout  : 20000, // Increase acquire timeout to 20 seconds
     timeout         : 20000,
 
-    user: process.env.Db_Username, 
+    user: process.env.DbGeo_Username, 
     password: process.env.Db_Password, 
     host: process.env.Db_Host,
     port: process.env.DB_PORT, 
