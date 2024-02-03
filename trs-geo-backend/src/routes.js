@@ -12,7 +12,7 @@ router.get("/users", controller.getAllUsers);
 
 router.get("/users/:id", controller.getUserById);
 
-router.delete("/users/:id", controller.deleteUsers);
+// router.delete("/users/:id", controller.deleteUsers);
 
 router.put("/users/:id", controller.updateUsers);
 
@@ -27,13 +27,16 @@ router.post("/Products", controller.addProducts);
 
 router.put("/Products/:id", controller.updateProduct);
 
-router.delete("/Products/:id", controller.deleteProducts);
+// router.delete("/Products/:id", controller.deleteProducts);
 
 
 
 //cart controllers:
 // router.delete("/Cart", authsMiddleware.checkJWT, controller.deleteProductFromCart);
-router.delete("/Cart/:product_id", authsMiddleware.checkJWT, controller.deleteProductFromCart);
+
+
+
+// router.delete("/Cart/:product_id", authsMiddleware.checkJWT, controller.deleteProductFromCart);
 
 router.get("/Carts", controller.getAllCarts);
 
