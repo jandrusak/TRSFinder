@@ -3,7 +3,6 @@ let argon = require("argon2");
 let jwt = require("jsonwebtoken");
 
 let registerUser = async function (req, res) {
-  console.log(req.body);
   let { email, pwd: password, city, full_name } = req.body;
 
   if (!email || !password) {
