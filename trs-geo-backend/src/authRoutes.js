@@ -1,12 +1,10 @@
-let express = require("express"); 
-
+let express = require("express");
 let router = express.Router();
 
 let controller = require("./authController");
+const { checkJWT } = require("./mwauths");
 
 const authsMiddleware = require("./mwauths");
-
-const { checkJWT } = require("./mwauths");
 
 
 

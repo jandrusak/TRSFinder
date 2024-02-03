@@ -29,9 +29,6 @@ function Register() {
         navigate("/login");
         } catch(error) {
           console.error("registration error: ", error);
-          if (error.response) {
-            console.error("error response: ", error.response);
-          }
         }
       };
   return (
@@ -67,7 +64,7 @@ function Register() {
             onChange={handleChange}
             value={state.full_name}
             name="full_name"
-            label="FullName"
+            label="Full-Name"
             type="text"
           />
           <Button sx={{ backgroundColor: "#f6359d" }}
