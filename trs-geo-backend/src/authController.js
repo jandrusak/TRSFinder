@@ -1,6 +1,8 @@
 let db = require("../src/db");
 let argon = require("argon2");
 let jwt = require("jsonwebtoken");
+const router = require("./routes");
+
 
 let registerUser = async function (req, res) {
   let { email, pwd: password, city, full_name } = req.body;
@@ -75,7 +77,10 @@ let loginUser = function (req, res) {
   });
 };
 
+
 module.exports = {
   registerUser,
   loginUser,
 }
+
+
