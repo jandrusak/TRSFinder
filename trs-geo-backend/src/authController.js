@@ -5,7 +5,10 @@ const router = require("./routes");
 
 
 let registerUser = async function (req, res) {
-  let { email, pwd: password, city, full_name } = req.body;
+  let email = req.body.email;
+  let password = req.body.pwd;
+  let city = req.body.city; 
+  let full_name = req.body.full_name;
 
   if (!email || !password) {
     return res.status(400).json({ message: "email and password are required" });
