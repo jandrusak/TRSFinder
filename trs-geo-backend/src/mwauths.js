@@ -1,7 +1,8 @@
 const { sign } = require("jsonwebtoken");
-let jwt = require("jsonwebtoken");
+// let jwt = require("jsonwebtoken");
 
-let checkJWT = function (req, res, next) {
+// let checkJWT = function (req, res, next) {
+
   //if request is valid, call next()
   //if not valid, send 401 on response
 
@@ -29,7 +30,7 @@ let checkJWT = function (req, res, next) {
       res.sendStatus(401);
     }
   }
-};
+// };
 
 module.exports = {
   checkJWT,
