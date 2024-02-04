@@ -24,7 +24,7 @@ let registerUser = async function (req, res) {
       res.status(201).json({ message: "User registered successfully", email, hash, city, full_name });
     });
   } catch (err) {
-    console.log("Error during database interaction", err);
+    console.log("Error during database interaction", err.response.data);
     return res.sendStatus(500).json({ message: "Internal server error during database interaction" });
   }
 };
