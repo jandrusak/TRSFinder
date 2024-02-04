@@ -3,7 +3,6 @@ let argon = require("argon2");
 let jwt = require("jsonwebtoken");
 const router = require("./routes");
 
-
 let registerUser = async function (req, res) {
   console.log("Request Body:", req.body); // Log the request body
   let { email, pwd: password, city, full_name } = req.body;
@@ -12,20 +11,36 @@ let registerUser = async function (req, res) {
     return res.status(400).json({ message: "email and password are required" });
   }
 
-  let hash;
   try {
-    let sql = "INSERT INTO users (email, pwd, city, full_name) values (?, ?, ?, ?)";
+    let hash = await argon.hash(password);
+    let sql =
+      "INSERT INTO users (email, pwd, city, full_name) values (?, ?, ?, ?)";
     let params = [email, hash, city, full_name];
+
     db.query(sql, params, function (err, results) {
       if (err) {
         console.error("Database error:", err);
-        return res.status(500).json({ message: "Failed to register user due to an internal error" });
+        return res
+          .status(500)
+          .json({
+            message: "Failed to register user due to an internal error",
+          });
       }
-      res.status(201).json({ message: "User registered successfully", email, hash, city, full_name });
+      res
+        .status(201)
+        .json({
+          message: "User registered successfully",
+          email,
+          hash,
+          city,
+          full_name,
+        });
     });
   } catch (err) {
     console.log("Error during database interaction", err.response.data);
-    return res.sendStatus(500).json({ message: "Internal server error during database interaction" });
+    return res
+      .sendStatus(500)
+      .json({ message: "Internal server error during database interaction" });
   }
 };
 
@@ -57,7 +72,9 @@ let loginUser = function (req, res) {
           id: storedId,
           email: email,
         };
-        let signedToken = jwt.sign(token, process.env.Jwt_Secret, {expiresIn: 432000})
+        let signedToken = jwt.sign(token, process.env.Jwt_Secret, {
+          expiresIn: 432000,
+        });
         res.json(signedToken);
       } else {
         res.sendStatus(401);
@@ -69,10 +86,7 @@ let loginUser = function (req, res) {
   });
 };
 
-
 module.exports = {
   registerUser,
   loginUser,
-}
-
-
+};
