@@ -14,13 +14,18 @@ let registerUser = async function (req, res) {
 
   let hash;
   try {
-    hash = await argon.hash(password);
-    console.log(`Hash generated for password: ${hash}`);
-    // Simulate successful registration with hashed password but without database interaction
-    res.status(201).json({ message: "User registered successfully (with hash)", email, hash, city, full_name });
+    let sql = "INSERT INTO users (email, pwd, city, full_name) values (?, ?, ?, ?)";
+    let params = [email, hash, city, full_name];
+    db.query(sql, params, function (err, results) {
+      if (err) {
+        console.error("Database error:", err);
+        return res.status(500).json({ message: "Failed to register user due to an internal error" });
+      }
+      res.status(201).json({ message: "User registered successfully", email, hash, city, full_name });
+    });
   } catch (err) {
-    console.log("Failed to hash the password", err);
-    return res.sendStatus(500).json({ message: "Internal server error during password hashing" });
+    console.log("Error during database interaction", err);
+    return res.sendStatus(500).json({ message: "Internal server error during database interaction" });
   }
 };
 
