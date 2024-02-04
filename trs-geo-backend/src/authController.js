@@ -5,18 +5,24 @@ const router = require("./routes");
 
 
 let registerUser = async function (req, res) {
-  console.log("request body:" , req.body)
+  console.log("Request Body:", req.body); // Log the request body
 
-  console.log ("About to execute a simple query...");
-  db.query('SELECT 1 + 1 AS solution', function (err, results) {
-    if (err) {
-      console.error("Database error:", err); 
-      return res.status(500).json({message: "failed to execute simple query"});
-    }
-    console.log('The solution is: ', results[0].solution);
-    return res.status(200).json({message: "simple query executed successfully", solution: results[0].solution})
-  });
+  let { email, pwd: password, city, full_name } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "email and password are required" });
+  } 
+
+  // Use a static hash for testing
+  let hash = "static-hash-for-testing";
+
+  // Simulate successful registration without interacting with the database
+  console.log(`Registering user with email: ${email}, Hash: ${hash}, City: ${city}, Full Name: ${full_name}`);
+  
+  // Send a static response back
+  res.status(201).json({ message: "User registered successfully", email, hash, city, full_name });
 };
+
 
 
 
