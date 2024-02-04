@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export function MenuAppBar({ userLoggedIn, setUserLoggedIn }) {
   const linkStyle = {
     textDecoration: "none", 
-    color: "inherit", 
+    color: "green", 
     flexGrow: 1, 
     cursor: "pointer", 
     fontWeight: 'bold', 
@@ -24,7 +24,7 @@ export function MenuAppBar({ userLoggedIn, setUserLoggedIn }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: "black" }}>
+      <AppBar position="static" sx={{ backgroundColor: "#ffffff", color: "#005b96", boxShadow: "none" }}>
         <Toolbar style={{ display: "flex", minHeight: '56px', padding: '0 8px', justifyContent: "space-between" }}>
         {/* <Toolbar sx={{ }}> */}
           <div style={{ display: "flex", gap: "1rem" }}>
@@ -46,7 +46,7 @@ export function MenuAppBar({ userLoggedIn, setUserLoggedIn }) {
                 component="div"
                 sx={{ ...linkStyle}}
               >
-                Products
+                Employers
               </Typography>
             </Link>
             <Link
@@ -58,7 +58,7 @@ export function MenuAppBar({ userLoggedIn, setUserLoggedIn }) {
                 component="div"
                 sx={{ ...linkStyle }}
               >
-                Cart
+                My Profile
               </Typography>
             </Link>
           </div>
