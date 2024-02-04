@@ -12,7 +12,8 @@ let connection = mysql.createPool({
     user: process.env.DbGeo_Username,
     password: process.env.Db_Password,
     database: process.env.Db_Name,
-    port: process.env.DB_PORT
+    port: process.env.DB_PORT,
+    ssl: { rejectUnauthorized: false } // Add this line to disable SSL verification
 
 });
 
