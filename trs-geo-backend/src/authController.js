@@ -5,40 +5,55 @@ const router = require("./routes");
 
 
 let registerUser = async function (req, res) {
-  let email = req.body.email;
-  let password = req.body.pwd;
-  let city = req.body.city; 
-  let full_name = req.body.full_name;
+  console.log("request body:" , req.body)
 
-  if (!email || !password) {
-    return res.status(400).json({ message: "email and password are required" });
-  } 
-
-  let hash;
-  try {
-    hash = await argon.hash(password);
-  } catch (err) {
-    console.log("Failed to hash the password", err);
-    return res.sendStatus(500).json({ message: "Internal server error during password hashing"});
-  }
-
-    let sql = "INSERT INTO users (email, pwd, city, full_name) values (?, ?, ?, ?)";
-    let params = [email, hash, city, full_name];
-
-    db.query(sql, params, function (err, results) {
-        if (err) {
-          console.error("Database error:", err);
-          // Handling specific known errors more gracefully, such as duplicate entry
-          if (err.code === 'ER_DUP_ENTRY') {
-              return res.status(409).json({ message: "Email already in use" });
-          }
-          // For other types of errors, keeping the response generic to avoid exposing sensitive information
-          return res.status(500).json({ message: "Failed to register user due to an internal error" });
-      }
-      // Considering sending a 201 status code with a success message or user information (excluding sensitive data)
-      res.status(201).json({ message: "User registered successfully" });
+  console.log ("About to execute a simple query...");
+  db.query('SELECT 1 + 1 AS solution', function (err, results) {
+    if (err) {
+      console.error("Database error:", err); 
+      return res.status(500).json({message: "failed to execute simple query"});
+    }
+    console.log('The solution is: ', results[0].solution);
+    return res.status(200).json({message: "simple query executed successfully", solution: results[0].solution})
   });
 };
+
+
+
+//   let email = req.body.email;
+//   let password = req.body.pwd;
+//   let city = req.body.city; 
+//   let full_name = req.body.full_name;
+
+//   if (!email || !password) {
+//     return res.status(400).json({ message: "email and password are required" });
+//   } 
+
+//   let hash;
+//   try {
+//     hash = await argon.hash(password);
+//   } catch (err) {
+//     console.log("Failed to hash the password", err);
+//     return res.sendStatus(500).json({ message: "Internal server error during password hashing"});
+//   }
+
+//     let sql = "INSERT INTO users (email, pwd, city, full_name) values (?, ?, ?, ?)";
+//     let params = [email, hash, city, full_name];
+
+//     db.query(sql, params, function (err, results) {
+//         if (err) {
+//           console.error("Database error:", err);
+//           // Handling specific known errors more gracefully, such as duplicate entry
+//           if (err.code === 'ER_DUP_ENTRY') {
+//               return res.status(409).json({ message: "Email already in use" });
+//           }
+//           // For other types of errors, keeping the response generic to avoid exposing sensitive information
+//           return res.status(500).json({ message: "Failed to register user due to an internal error" });
+//       }
+//       // Considering sending a 201 status code with a success message or user information (excluding sensitive data)
+//       res.status(201).json({ message: "User registered successfully" });
+//   });
+// };
 
 let loginUser = function (req, res) {
   let email = req.body.email;
