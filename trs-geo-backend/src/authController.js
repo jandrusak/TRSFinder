@@ -6,22 +6,24 @@ const router = require("./routes");
 
 let registerUser = async function (req, res) {
   console.log("Request Body:", req.body); // Log the request body
-
   let { email, pwd: password, city, full_name } = req.body;
 
   if (!email || !password) {
     return res.status(400).json({ message: "email and password are required" });
-  } 
+  }
 
-  // Use a static hash for testing
-  let hash = "static-hash-for-testing";
-
-  // Simulate successful registration without interacting with the database
-  console.log(`Registering user with email: ${email}, Hash: ${hash}, City: ${city}, Full Name: ${full_name}`);
-  
-  // Send a static response back
-  res.status(201).json({ message: "User registered successfully", email, hash, city, full_name });
+  let hash;
+  try {
+    hash = await argon.hash(password);
+    console.log(`Hash generated for password: ${hash}`);
+    // Simulate successful registration with hashed password but without database interaction
+    res.status(201).json({ message: "User registered successfully (with hash)", email, hash, city, full_name });
+  } catch (err) {
+    console.log("Failed to hash the password", err);
+    return res.sendStatus(500).json({ message: "Internal server error during password hashing" });
+  }
 };
+
 
 
 
