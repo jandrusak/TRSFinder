@@ -13,7 +13,7 @@ let connection = mysql.createPool({
     password: process.env.Db_Password,
     database: process.env.Db_Name,
     port: process.env.DB_PORT,
-    ssl: { rejectUnauthorized: false } // Add this line to disable SSL verification
+    // ssl: { rejectUnauthorized: false } // Add this line to disable SSL verification
 
 });
 
