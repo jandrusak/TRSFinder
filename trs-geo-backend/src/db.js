@@ -1,4 +1,4 @@
-const mysql = require("mysql2");
+const mysql = require("mysql");
 const { config } = require("dotenv");
 
 let connection = mysql.createPool({
