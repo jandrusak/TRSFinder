@@ -50,7 +50,8 @@ let registerUser = async function(req, res){
             console.log("Failed to register a user", err);
             res.sendStatus(500);
         }   else {
-            res.sendStatus(204);
+            res.status(204).json({message: "Success"});
+
         }
     })
 };

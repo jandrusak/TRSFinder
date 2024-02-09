@@ -2,10 +2,10 @@ const mysql = require("mysql2");
 const { config } = require("dotenv");
 
 let connection = mysql.createPool({
-    host: process.env.Db_Host,
-    user: process.env.DbGeo_Username,
-    password: process.env.Db_Password,
-    database: process.env.Db_Name,
+    host: process.env.DB_HOST,
+    user: process.env.DBGEO_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     port: process.env.DB_PORT,
     // ssl: { rejectUnauthorized: false } // Add this line to disable SSL verification
     //  host: "geo-database.cmz9ee14rvtf.us-east-1.rds.amazonaws.com",

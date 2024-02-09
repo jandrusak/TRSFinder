@@ -22,7 +22,9 @@ function Register() {
         e.preventDefault()
         console.log("sending:", state)
         try {
-        const response = await axios.post("https://trsfinder-backend.onrender.com/register", state, {
+        // const response = await axios.post("https://trsfinder-backend.onrender.com/register", state, {
+          const response = await axios.post("http://localhost:4001/register", state, {
+
         headers: {'Content-Type': 'application/json'}
         });
         console.log('response:', response);

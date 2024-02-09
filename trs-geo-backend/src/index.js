@@ -12,11 +12,11 @@ let authRoutes = require("./authRoutes");
 app.use(routes);
 app.use(authRoutes);
 
-app.get('/hello', (req, res) => {
+app.get('/', (req, res) => {
     res.send("Hello World");
 });
 
-let PORT = process.env.PORT || 3306;
+let PORT = process.env.PORT || 4001;
 app.listen(PORT, function(){
     console.log("GeoApp started on port", PORT);
 });
