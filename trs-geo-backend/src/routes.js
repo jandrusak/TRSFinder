@@ -29,28 +29,4 @@ router.put("/Products/:id", controller.updateProduct);
 
 // router.delete("/Products/:id", controller.deleteProducts);
 
-
-
-//cart controllers:
-// router.delete("/Cart", authsMiddleware.checkJWT, controller.deleteProductFromCart);
-
-
-router.delete("/Cart/:product_id", authsMiddleware.checkJWT, controller.deleteProductFromCart);
-
-router.get("/Carts", controller.getAllCarts);
-
-router.post("/Cart", authsMiddleware.checkJWT, controller.addProductByUId)
-router.get("/Cart", authsMiddleware.checkJWT, controller.getCartByUId)
-// router.put("/Cart/:id", controller.updateCartByUId)
-
-
-router.post("/addCart", authsMiddleware.checkJWT, controller.addToCartByProductId)
-
-router.get("/Cart/:id", authsMiddleware.checkJWT, controller.getCartByUId);
-//MUST HAVE MIDDLEWARE APPLIED
-// router.put("/Products/:id", controller.deleteProductFromCart);
-
-
-
-
 module.exports = router;

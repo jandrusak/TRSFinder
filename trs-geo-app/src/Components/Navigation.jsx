@@ -5,93 +5,40 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import cookie from 'cookie'
 import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
+
 
 export function MenuAppBar({ userLoggedIn, setUserLoggedIn }) {
   const linkStyle = {
-    textDecoration: "none", 
-    color: "green", 
-    flexGrow: 1, 
-    cursor: "pointer", 
-    fontWeight: 'bold', 
-    fontSize: '1rem'
+    textDecoration: "none",
+    color: "#3c763d", // Keeping the green color you like
+    flexGrow: 1,
+    cursor: "pointer",
+    fontWeight: 'bold',
+    fontSize: '1rem',
+    padding: '10px 15px', // Added padding for better touch area and aesthetics
+    borderRadius: '5px', // Softened edges for a modern look
+    '&:hover': {
+      backgroundColor: '#f5f5f5', // Subtle hover effect
+    }
   };
-
-  const handleLogout = () => {
-    document.cookie = cookie.serialize('loggedIn', null, {maxAge:0})
-    document.cookie = cookie.serialize("token", null)
-    setUserLoggedIn(false) 
-  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: "#ffffff", color: "#005b96", boxShadow: "none" }}>
-        <Toolbar style={{ display: "flex", minHeight: '56px', padding: '0 8px', justifyContent: "space-between" }}>
-        {/* <Toolbar sx={{ }}> */}
-          <div style={{ display: "flex", gap: "1rem" }}>
-            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{ ...linkStyle}}
-              >
-                Home
-              </Typography>
-            </Link>
-            <Link
-              to="/products"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{ ...linkStyle}}
-              >
-                Employers
-              </Typography>
-            </Link>
-            <Link
-              to="/cart"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{ ...linkStyle }}
-              >
-                My Profile
-              </Typography>
-            </Link>
-          </div>
-          <div>
-            {userLoggedIn ? (
-              <Link to= '/' onClick={handleLogout} style={{ textDecoration: "none", color: "inherit" }}>
-                <Typography
-                  variant="h6"
-                  component="div"
-                  sx={{ ...linkStyle }}
-                >
-                  Logout
-                </Typography>
-              </Link>
-            ) : (
-              <Link
-                to="/login"
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                <Typography
-                  variant="h6"
-                  component="div"
-                  sx={{ flexGrow: 1, cursor: "pointer" }}
-                >
-                  Login
-                </Typography>
-              </Link>
-            )}
-          </div>
-        </Toolbar>
-      </AppBar>
-    </Box>
-  ); 
+    <AppBar position="static" sx={{ backgroundColor: "#ffffff", color: "#005b96", boxShadow: "none" }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between", padding: '0 8px' }}>
+        <Box sx={{ display: "flex", gap: "20px" }}> {/* Increased gap for better spacing */}
+          <Link to="/" style={linkStyle}>
+            Home
+          </Link>
+          <Link to="/products" style={linkStyle}>
+            Employers
+          </Link>
+        </Box>
+      </Toolbar>
+    </AppBar>
+  </Box>
+);
 }
 
 export default MenuAppBar;

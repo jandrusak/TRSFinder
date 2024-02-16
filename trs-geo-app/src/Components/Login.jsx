@@ -15,13 +15,18 @@ function Login({setUserLoggedIn}) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post("https://trsfinder-backend.onrender.com/login", {
+        // axios.post("https://trsfinder-backend.onrender.com/login", {
+          axios.post("http://localhost:4001/login", {
             email: state.email,
             pwd: state.pwd,
         })
         .then((response) => {
-            document.cookie = 'loggedIn=true;max-age=60*10000'
-            document.cookie = cookie.serialize("token", response.data)
+          const token = response.data.token;
+          // document.cookie = cookie.serialize('loggedIn', 'true', { path: '/', maxAge: 60 * 10000, secure: true, httpOnly: false }); // Adjust maxAge as needed
+          // document.cookie = cookie.serialize('token', token, { path: '/', maxAge: 60 * 10000, secure: true, httpOnly: false }); // Adjust maxAge as needed
+          localStorage.setItem('token', token)
+            // document.cookie = 'loggedIn=true;max-age=60*10000'
+            // document.cookie = cookie.serialize("token", response.data)
             setUserLoggedIn(true)
             navigate('/')
         }) 

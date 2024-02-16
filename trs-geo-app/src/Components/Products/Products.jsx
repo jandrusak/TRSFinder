@@ -1,65 +1,107 @@
-import React, { useEffect, useState } from "react";
-import "./Products.css";
-import axios from "axios";
-import cookie from 'cookie';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import './Products.css';
 
 const Products = () => {
-  const [products, setProducts] = useState ([]);
-  const cookies = cookie.parse(document.cookie);
+    const [products, setProducts] = useState([]);
+    const [search, setSearch] = useState('');
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const fetchProducts = () => {
-    axios.get("https://trsfinder-backend.onrender.com/Products")
-    .then((response) => {
-      setProducts(response.data);
-    })
-  .catch((error) => {
-    console.log(error);
-  });
-  };
-
-  const handleAddToCart = (product_id) => {
-      axios.post("https://trsfinder-backend.onrender.com/addCart" ,  {"productId": product_id},{
-        headers: {
-          Authorization: `Bearer ${cookies.token}`
-        }
-      }).then(() => {
-        alert("Added to Cart");
-      }).catch((error) => {
-        console.log(err.message)
-      });
-   };
-
-
-
+    // Fetch products based on the search query
+    // const fetchProducts = async () => {
+    //   if (search.trim()) {
+    //         const query = `?search=${encodeURIComponent(search)}`;
+    //         try {
+    //                   // axios.get("https://trsfinder-backend.onrender.com/Products")
+    //           const response = await axios.get(`http://localhost:4001/Products${query}`);
+    //           setProducts(response.data);
+    //         } catch (error) {
+    //                 console.error('Error fetching products:', error);
+    //             }
+    //     }
+    //   }
 
     
-    useEffect(()=>{
+    const fetchProducts = async () => {
+        const query = search.trim() ? `?search=${encodeURIComponent(search)}` : '';
+        try {
+          const response = await axios.get(`http://localhost:4001/Products${query}`);
+          setProducts(response.data);
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      };
+      
+      // Add this button onClick
+      const handleSearchClick = () => {
         fetchProducts();
-    }, []);
-  return (
-      <div className="card-container">
-        {
-            products.map((product)=>(
-                //create card here maybe using MUI
-                <div key={product.product_id} >
-                    <h5>
-                      <Link to={`/products/${product.product_id}`}>                      
-                      {product.product_title}
-                      </Link>
-                      </h5>
-                    <div className="add-button">
-                    <img src={product.image_url} alt={product.product_title} className="product-image"/>
-                    <button onClick={()=> handleAddToCart(product.product_id)}>Add to Cart</button>
-                    </div>
+      };
+      
+
+
+      const handleProductClick = (product) => {
+
+        // setSelectedProduct(product);
+        
+
+    };
+
+//this useEffect shows results as typing
+    //   useEffect(() => {
+    //     fetchProducts();
+    // }, [search]);
+    useEffect(() => {
+        console.log("Selected product updated:", selectedProduct);
+    }, [selectedProduct]);
+    {products.map((product) => (
+        <div key={product.school_id} className="product-item" onClick={() => handleProductClick(product)}>
+            <h5>{product.name}</h5>
+        </div>
+    ))}
+    
+
+
+
+
+    return (
+        <div className="products-container">
+            <div className="search-section">
+                <input
+                    type="text"
+                    placeholder="Search by City, County, Zip, or District Name"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+        <button onClick={handleSearchClick}>Search</button> {/* Updated to call fetchProducts directly */}
+            </div>
+            {/* <div className="product-list"> */}
+            <div className="content">
+            <div className="employer-list">
+        {products.map((product) => (
+          <div key={product.school_id} className="product-item" onClick={() => setSelectedProduct(product)}>
+            <h5>{product.name}</h5>
+          </div>
+                ))}
+            </div>
+            {selectedProduct && (
+                <div className="product-details">
+                <h2>{selectedProduct.name}</h2>
+            <p>Address: {selectedProduct.address}</p>
+             <p>City: {selectedProduct.city}</p>
+             <p>Type: {selectedProduct.type}</p>
+             <p>Website: <a href={selectedProduct.website_address} target="_blank" rel="noopener noreferrer">{selectedProduct.website_address}</a></p>
+             <p>Phone: {selectedProduct.phone}</p>
+             <p>Zip: {selectedProduct.zip}</p>
+             <p>County: {selectedProduct.county}</p>
+             <p>District Name: {selectedProduct.district_name}</p>
+             <button onClick={() => setSelectedProduct(null)}>Close</button>
                 </div>
-            ))
-        }          
-      </div>
-  )
+            )}
+        </div>
+                </div>
 
-  
-}
+    );
+};
 
-export default Products
+export default Products;

@@ -6,9 +6,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Users from "./Components/Users";
 import axios from "axios";
-import Cart from "./Components/Cart/Cart"
 import Navigation from './Components/Navigation'
-import ProductDetails from "./Components/Products/ProductDetails";
 import Products from "./Components/Products/Products";
 
 
@@ -19,15 +17,6 @@ const checkAuth = () => {
   const cookies = cookie.parse(document.cookie);
   return cookies.loggedIn === "true";
 };
-
-// Write ProtectedRoute function here
-// const ProtectedRoute = ({ path, element }) => {
-//     if (checkAuth()) {
-//         return <Route path ={path} element={element}/>
-//     } else {
-//         return <Navigate to="/login" />
-//     }
-// }
 
 const ProtectedRoute = (props) => {
   const { component: Component, ...rest } = props;
@@ -58,13 +47,10 @@ const Router = () => {
     <Navigation userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn}/>
     <Routes>
       <Route path="/" element={<Home />} />
-      {/* add products page protected route */}
       <Route path="/products" element={<ProtectedRoute component={Products} />} />
-      <Route path="/cart" element={<ProtectedRoute component={Cart} />} />
       <Route path="/login" element={<Login setUserLoggedIn={setUserLoggedIn}/>} />
       <Route path="/register" element={<Register />} />
       <Route path="/users" element={<Users />} />
-      <Route path="/products/:productId" element={<ProductDetails />} />
     </Routes>
     </>
   );

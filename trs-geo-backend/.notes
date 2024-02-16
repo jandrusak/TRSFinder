@@ -1,0 +1,122 @@
+// index.js
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const chatRoutes = require('./routes'); // Import routes
+
+app.use(cors());
+app.use(express.json()); // for parsing application/json
+
+// Use routes
+app.use('/api', chatRoutes);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// routes.js
+const express = require('express');
+const router = express.Router();
+const { generateText } = require('./controller'); // Import controller functions
+
+// Define route for generating text
+router.post('/generate-text', generateText);
+
+module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// controller.js
+const axios = require('axios');
+
+exports.generateText = async (req, res) => {
+    try {
+        const { prompt } = req.body;
+        const response = await axios.post('https://api.openai.com/v4/completions', {
+            model: 'text-davinci-003',
+            prompt,
+            max_tokens: 100,
+        }, {
+            headers: {
+                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+            },
+        });
+
+        res.json({ generatedText: response.data.choices[0].text });
+    } catch (error) {
+        console.error('Error generating text:', error);
+        res.status(500).send('Failed to generate text');
+    }
+};
+
+
+
+
+
+
+
+

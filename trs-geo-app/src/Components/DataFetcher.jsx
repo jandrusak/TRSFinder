@@ -5,7 +5,9 @@ function DataFetcher() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-      axios.get('https://trsfinder-backend.onrender.com/Products')
+      // axios.get('https://trsfinder-backend.onrender.com/Products')
+      axios.get('http://localhost:4001/Products')
+      
         .then(response => {
           setData(response.data);
         })  
