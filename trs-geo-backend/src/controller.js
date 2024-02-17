@@ -11,6 +11,7 @@ let getAllProducts = function (req, res) {
     let searchPattern = `%${search}%`;
   
     db.query(sql, [searchPattern, searchPattern, searchPattern, searchPattern], (err, results) => {
+      console.log("Executing SQL:", sql, "Params:", [searchPattern, searchPattern, searchPattern, searchPattern]);
       if (err) {
         console.error("Failed to execute query:", err);
         return res.status(500).send("Internal server error");
@@ -18,26 +19,6 @@ let getAllProducts = function (req, res) {
       res.json(results);
     });
   };
-
-let addProducts = function (req, res) {
-  let { name, address, city, type, website_address, phone } = req.body;
-
-  if (!name || !address || !city || !type) {
-    res.status(400).json("Complete required fields: name, address, city, type");
-    return;
-  }
-  let sql =
-    "insert into Products (name, address, city, type, website_address, phone) values (?, ?, ?, ?, ?, ?)";
-  let params = [name, address, city, type, website_address, phone];
-  db.query(sql, params, function (err, results) {
-    if (err) {
-      console.log("Failed to insert into the database", err);
-      res.sendStatus(500);
-    } else {
-      res.status(201).send("employer  added succesfully");
-    }
-  });
-};
 
 let getProductById = function (req, res) {
   let {
@@ -87,30 +68,7 @@ let getProductById = function (req, res) {
   });
 };
 
-let updateProduct = function (req, res) {
-  let id = req.params.id;
-  let { name, address, city, type } = req.body;
-  let sql =
-    "UPDATE Products set name = ?, address = ?, city = ?, type = ? WHERE school_id = ?";
-  let params = [name, address, city, type, id];
-  db.query(sql, params, function (err, results) {
-    if (err) {
-      console.log("update failed", err);
-      res.sendStatus(500);
-    } else {
-      if (results.affectedRows === 0) {
-        res.sendStatus(204);
-      } else {
-        res.json({ message: "Update Successful", results });
-      }
-    }
-  });
-};
-
 module.exports = {
-  addProducts,
-  updateProduct,
   getAllProducts,
   getProductById,
-  // deleteProducts,
 };

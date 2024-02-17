@@ -7,14 +7,6 @@ let connection = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
-    // ssl: { rejectUnauthorized: false } // Add this line to disable SSL verification
-    //  host: "geo-database.cmz9ee14rvtf.us-east-1.rds.amazonaws.com",
-    // user: "admin",
-    // password: "Jonathan#1",
-    // database: "geobase",
-    // port: 3306,
-
-
 });
 
 let sql = "select now();"
