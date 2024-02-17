@@ -10,12 +10,64 @@
 
 #root {
   width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height:  83vh;
+  /* padding-top: 15px; */
+
+  
+}
+
+/* App.css */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  /* padding-top: 15px; */
+
+}
+
+.products-container {
+  padding-top: 70px; /* Adjust this value based on the height of your navigation bar */
 }
 
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+/* /* Base styles */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  padding-top: 25px;
+}
+
+/* Adjusting min-height for mobile devices */
+@media (max-width: 383px) {
+
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    padding-top: 15px;
+
+  }
+
+  #root {
+    min-height: calc(100vh - 60px); /* Subtract the height of your navigation bar */
+  }
+
+  /* Adjust the search-section's top margin if necessary */
+  .search-section {
+    margin-top: 20px; /* Add space above the search section if needed */
+    margin-left: 30px;
   }
 }
 
@@ -41,4 +93,6 @@
   to {
     transform: rotate(360deg);
   }
+
+
 }

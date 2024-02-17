@@ -8,9 +8,8 @@ const Home = (props) => {
     <div className="left-container">
       <h3>TRS Employer API Search</h3>
       <p className="founder-text">
-        This is an API database you can use to find employers in your city who pay into the teacher retirement system. 
-        Please verify any and all information as it could be outdated and incorrect. 
-        We request that you make an account for quality purposes.
+        This is an API database you can use to find employers in your area who pay into the teacher retirement system. 
+        Please verify any and all information as it could be outdated and incorrect.
       </p>
     </div>
     <div className="right-container">

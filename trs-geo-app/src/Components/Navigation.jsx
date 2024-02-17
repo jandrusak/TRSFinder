@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 
 
-export function MenuAppBar({ userLoggedIn, setUserLoggedIn }) {
+const MenuAppBar = () => {
   const linkStyle = {
     textDecoration: "none",
-    color: "#3c763d", // Keeping the green color you like
+    color: "#35845c", // Keeping the green color you like
     flexGrow: 1,
     cursor: "pointer",
     fontWeight: 'bold',
@@ -25,7 +25,7 @@ export function MenuAppBar({ userLoggedIn, setUserLoggedIn }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-    <AppBar position="static" sx={{ backgroundColor: "#ffffff", color: "#005b96", boxShadow: "none" }}>
+      <AppBar position="fixed" sx={{ backgroundColor: "#ffffff", color: "#005b96", boxShadow: "none", top: 2}}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between", padding: '0 8px' }}>
         <Box sx={{ display: "flex", gap: "20px" }}> {/* Increased gap for better spacing */}
           <Link to="/" style={linkStyle}>
