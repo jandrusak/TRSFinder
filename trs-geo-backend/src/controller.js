@@ -87,24 +87,6 @@ let getProductById = function (req, res) {
   });
 };
 
-let deleteProducts = function (req, res) {
-  let id = req.params.id;
-  let sql = "delete from Products where school_id = ?";
-  let params = [id];
-  db.query(sql, params, function (err, results) {
-    if (err) {
-      console.log("delete query failed", err);
-      res.status(500).send({ message: "An error occured" });
-    } else {
-      if (results.affectedRows === 0) {
-        res.status(404).json({ message: "employer not found" });
-      } else {
-        res.status(200).json({ message: "employer deleted" });
-      }
-    }
-  });
-};
-
 let updateProduct = function (req, res) {
   let id = req.params.id;
   let { name, address, city, type } = req.body;
@@ -130,5 +112,5 @@ module.exports = {
   updateProduct,
   getAllProducts,
   getProductById,
-  deleteProducts,
+  // deleteProducts,
 };
