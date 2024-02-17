@@ -3,7 +3,13 @@ const express = require('express')
 const app = express();
 const cors = require("cors");
 
-app.use(cors())
+const corsOptions = {
+    origin: ['http://localhost:5173', 'https://trsfinder-frontend.onrender.com'], 
+    optionsSuccessStatus: 200,
+};
+
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 let routes = require("./routes");
@@ -30,14 +36,7 @@ app.listen(PORT, function(){
 // let cors = require("cors");
 // require("dotenv").config();
 
-// const corsOptions = {
-//     origin: ['http://localhost:5173', 'https://trsfinder-frontend.onrender.com'], 
-//     optionsSuccessStatus: 200,
-// };
 
-
-// app.use(cors(corsOptions));
-// app.use(express.json());
 
 // //importing routes
 // let routes = require("./routes");
