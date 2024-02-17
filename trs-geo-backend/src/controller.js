@@ -1,96 +1,5 @@
 let db = require("./db");
 
-//USERS CONTROLLERS COMPLETED
-let getAllUsers = function (req, res) {
-  let sql = "select * from users";
-  db.query(sql, function (err, results) {
-    if (err) {
-      console.log("failed to execute query", err);
-      res.sendStatus(500).send("internal server error");
-    } else {
-      if (results.length == 0) {
-        res.sendStatus(404);
-      } else {
-        res.json(results);
-      }
-    }
-  });
-};
-
-let getUserById = function (req, res) {
-  let id = req.params.id;
-  let sql = "select * from users where user_id = ?";
-  let params = [id];
-  db.query(sql, params, function (err, results) {
-    if (err) {
-      console.log("failed", err);
-      res.sendStatus(500);
-    } else {
-      if (results.length == 0) {
-        res.sendStatus(404);
-      } else {
-        res.json(results[0]);
-      }
-    }
-  });
-};
-
-let deleteUsers = function (req, res) {
-  let id = req.params.id;
-  let sql = "delete from users where user_id = ?";
-  let params = [id];
-  db.query(sql, params, function (err, results) {
-    if (err) {
-      console.log("delete query failed", err);
-      res.sendStatus(500);
-    } else {
-      res.sendStatus(204);
-    }
-  });
-};
-
-let updateUsers = function (req, res) {
-  let id = req.params.id;
-  let { email, pwd, city, full_name } = req.body;
-
-  let updates = [];
-  let params = [];
-  if (email !== undefined) {
-    updates.push("email = ?");
-    params.push(email);
-  }
-  if (pwd !== undefined) {
-    updates.push("pwd = ?");
-    params.push(pwd);
-  }
-  if (city !== undefined) {
-    updates.push("city = ?");
-    params.push(city);
-  }
-  if (full_name !== undefined) {
-    updates.push("full_name = ?");
-    params.push(full_name);
-  }
-  if (updates.length === 0) {
-    return res.status(400).send("no fields provided for update");
-  }
-  params.push(id);
-
-  let sql = `UPDATE users SET ${updates.join(", ")} WHERE user_id = ?`;
-  db.query(sql, params, function (err, results) {
-    if (err) {
-      console.log("update failed", err);
-      res.sendStatus(500);
-    } else {
-      if (results.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.json({ message: "Update Successful", results });
-      }
-    }
-  });
-};
-
 //PRODUCTS CONTROLLERS
 let getAllProducts = function (req, res) {
     let search = req.query.search || '';
@@ -217,12 +126,6 @@ let updateProduct = function (req, res) {
 };
 
 module.exports = {
-  // listUsers,
-  getUserById,
-  getAllUsers,
-  deleteUsers,
-  updateUsers,
-
   addProducts,
   updateProduct,
   getAllProducts,

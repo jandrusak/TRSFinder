@@ -7,10 +7,8 @@ app.use(cors())
 app.use(express.json());
 
 let routes = require("./routes");
-let authRoutes = require("./authRoutes");
 
 app.use(routes);
-app.use(authRoutes);
 
 app.get('/', (req, res) => {
     res.send("Hello World");
