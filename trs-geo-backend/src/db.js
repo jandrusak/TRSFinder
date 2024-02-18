@@ -2,11 +2,12 @@ const mysql = require("mysql2");
 const { config } = require("dotenv");
 
 let connection = mysql.createPool({
-    host: process.env.DB_HOST,
     user: process.env.DBGEO_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
     port: process.env.DB_PORT,
+    database: process.env.DB_NAME
+
 });
 
 let sql = "select now();"

@@ -3,14 +3,7 @@ const express = require('express')
 const app = express();
 const cors = require("cors");
 
-const corsOptions = {
-    origin: [
-        // 'http://localhost:3000', 
-        'https://trs-finderfrontend.netlify.app'], 
-    optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 let routes = require("./routes");

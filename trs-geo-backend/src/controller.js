@@ -1,6 +1,5 @@
 let db = require("./db");
 
-//PRODUCTS CONTROLLERS
 let getAllProducts = function (req, res) {
     let search = req.query.search || '';
     let sql = `SELECT * FROM Products WHERE
@@ -22,6 +21,37 @@ let getAllProducts = function (req, res) {
       res.json(results);
     });
   };
+
+module.exports = {
+  getAllProducts,
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // let getProductById = function (req, res) {
 //   let {
@@ -71,7 +101,5 @@ let getAllProducts = function (req, res) {
 //   });
 // };
 
-module.exports = {
-  getAllProducts,
+
   // getProductById,
-};
