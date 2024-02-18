@@ -14,6 +14,19 @@ function DataFetcher() {
       })
       .catch((error) => {
         console.error("Error fetching data : ", error);
+        if (error.response) {
+          console.error("Error Data:", error.response.data);
+          console.error("Error Status:", error.response.status);
+          console.error("Error Headers:", error.response.headers);
+        } else if (error.request) {
+          console.error("Error Request:", error.request);
+        } else {
+          console.error("Error Message:", error.message);
+        }
+        console.error("Error Config:", error.config);
+
+
+
       });
   }, []);
 
