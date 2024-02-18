@@ -23,55 +23,55 @@ let getAllProducts = function (req, res) {
     });
   };
 
-let getProductById = function (req, res) {
-  let {
-    school_id,
-    name,
-    address,
-    city,
-    type,
-    zip,
-    county,
-    district_name,
-    district_city,
-  } = req.query;
-  let sql = "select * from Products where";
-  let conditions = [];
-  let params = [];
+// let getProductById = function (req, res) {
+//   let {
+//     school_id,
+//     name,
+//     address,
+//     city,
+//     type,
+//     zip,
+//     county,
+//     district_name,
+//     district_city,
+//   } = req.query;
+//   let sql = "select * from Products where";
+//   let conditions = [];
+//   let params = [];
 
-  if (school_id) {
-    conditions.push(" school_id = ?");
-    params.push(school_id);
-  }
-  if (name) {
-    conditions.push(" name LIKE ?");
-    params.push(`%${name}%`);
-  }
-  if (address) {
-    conditions.push(" address LIKE ?");
-    params.push(`%${address}%`);
-  }
-  if (conditions.length === 0) {
-    return res.status(400).send("No search criteria provided");
-  }
+//   if (school_id) {
+//     conditions.push(" school_id = ?");
+//     params.push(school_id);
+//   }
+//   if (name) {
+//     conditions.push(" name LIKE ?");
+//     params.push(`%${name}%`);
+//   }
+//   if (address) {
+//     conditions.push(" address LIKE ?");
+//     params.push(`%${address}%`);
+//   }
+//   if (conditions.length === 0) {
+//     return res.status(400).send("No search criteria provided");
+//   }
 
-  sql += conditions.join(" AND ");
+//   sql += conditions.join(" AND ");
 
-  db.query(sql, params, function (err, results) {
-    if (err) {
-      console.log("failed", err);
-      res.sendStatus(500);
-    } else {
-      if (results.length == 0) {
-        res.sendStatus(404);
-      } else {
-        res.json(results[0]);
-      }
-    }
-  });
-};
+//   db.query(sql, params, function (err, results) {
+//     if (err) {
+//       console.log("failed", err);
+//       res.sendStatus(500);
+//     } else {
+//       if (results.length == 0) {
+//         res.sendStatus(404);
+//       } else {
+//         res.json(results[0]);
+//       }
+//     }
+//   });
+// };
 
 module.exports = {
   getAllProducts,
-  getProductById,
+  // getProductById,
 };
