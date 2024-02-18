@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 
 const corsOptions = {
-    origin: ['http://localhost:3000', 'https://trsfinder-frontend.onrender.com'], 
+    origin: ['http://localhost:3000', 'https://trs-finderfrontend.netlify.app'], 
     optionsSuccessStatus: 200,
 };
 
