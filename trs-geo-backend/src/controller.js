@@ -11,10 +11,13 @@ let getAllProducts = function (req, res) {
     let searchPattern = `%${search}%`;
   
     db.query(sql, [searchPattern, searchPattern, searchPattern, searchPattern], (err, results) => {
-      console.log("Executing SQL:", sql, "Params:", [searchPattern, searchPattern, searchPattern, searchPattern]);
       if (err) {
         console.error("Failed to execute query:", err);
-        return res.status(500).send("Internal server error");
+        return res.status(500).json({
+          message: "Internal server error",
+          error: err.message,
+          sqlState: err.sqlState,
+      });
       }
       res.json(results);
     });
