@@ -11,6 +11,8 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: #ffffff; /* Set text color to white for better visibility */
   min-height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom);
+
 }
 
 .over-container {
