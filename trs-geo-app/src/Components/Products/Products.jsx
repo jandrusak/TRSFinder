@@ -24,14 +24,14 @@ const Products = () => {
 
   const fetchProducts = async () => {
     const query = search.trim() ? `?search=${encodeURIComponent(search)}` : "";
-    // const url = `https://trsfinder-backend.onrender.com/Products${query}`;
-    const url = `http://localhost:4001/Products${query}`;
+    const url = `https://trsfinder-backend.onrender.com/Products${query}`;
+    // const url = `http://localhost:4001/Products${query}`;
 
     console.log("Requesting URL:", url);
     try {
       const response = await axios.get(
-        `http://localhost:4001/Products${query}`
-        // `https://trsfinder-backend.onrender.com/Products${query}`
+        // `http://localhost:4001/Products${query}`
+        `https://trsfinder-backend.onrender.com/Products${query}`
       );
       setProducts(response.data);
     } catch (error) {
