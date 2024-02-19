@@ -177,16 +177,19 @@ html, body, #root{
   /* On smaller screens, adjust layout */
   .content {
     flex-direction: column; /* Stack vertically */
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   .employer-list,
   .employer-details {
     width: 100%; /* Each takes full width */
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   /* Adjust or hide elements as needed for mobile */
   .employer-details {
     margin-top: 20px; /* Add space between list and details */
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
 
