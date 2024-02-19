@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import backgroundImage from '../../images/5.webp';
+import backgroundImage from '../../images/newback.jpg';
 
 const Home = (props) => {
   const parentContainerStyle = {
