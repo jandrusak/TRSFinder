@@ -6,8 +6,7 @@ import Router from './Router';
 function App() {
   return (
       <BrowserRouter>
-        <Router path="/" element={<Home />} />
-        <Router path="/products" element={<Products />} />
+        <Router />
       </BrowserRouter>
   );
 }
