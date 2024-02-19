@@ -9,6 +9,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --vh: 1vh; 
 }
 
 body {
@@ -24,10 +25,12 @@ body {
   padding-right:env(safe-area-inset-right) ;
 }
 
-html, body {
-  height: 100%;
+html, body, #root {
   margin: 0;
   padding: 0;
+  width: 100%;
+  min-height: 100vh; /* Fallback */
+  min-height: calc(var(--vh, 1vh) * 100); /* Use the dynamic viewport height */
 }
 
 #root {

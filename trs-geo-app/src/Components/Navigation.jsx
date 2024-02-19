@@ -33,9 +33,7 @@ const MenuAppBar = () => {
           backgroundColor: "#2db7b1",
           color: "#2db7b1",
           boxShadow: "none",
-          top: 0,
-          paddingTop: "env(safe-area-inset-top)", // Adjust for safe area
-          paddingBottom: "env(safe-area-inset-bottom)", // Optional, if you want the bottom safe area to be considered
+          top: 0
         }}
       >
         <Toolbar
