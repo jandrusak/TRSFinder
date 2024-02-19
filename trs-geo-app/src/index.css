@@ -17,7 +17,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #f2f7fc; 
+  background-color: #2db7b1; 
   padding-top: env(safe-area-inset-top) ;
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
@@ -34,6 +34,6 @@ html, body {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547; 
-    background-color: #ffffff; 
+    background-color: #2db7b1; 
   }
 }
