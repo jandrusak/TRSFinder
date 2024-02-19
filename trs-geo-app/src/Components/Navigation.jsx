@@ -11,7 +11,9 @@ import Button from '@mui/material/Button';
 const MenuAppBar = () => {
   const linkStyle = {
     textDecoration: "none",
-    color: "#35845c", // Keeping the green color you like
+    color: "#30AD23",
+    //  "#35845c", 
+     // Keeping the green color you like
     flexGrow: 1,
     cursor: "pointer",
     fontWeight: 'bold',
@@ -19,13 +21,14 @@ const MenuAppBar = () => {
     padding: '10px 15px', // Added padding for better touch area and aesthetics
     borderRadius: '5px', // Softened edges for a modern look
     '&:hover': {
-      backgroundColor: '#f5f5f5', // Subtle hover effect
+      backgroundColor: '#f5f5f5', 
+      // Subtle hover effect
     }
   };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ backgroundColor: "#ffffff", color: "#005b96", boxShadow: "none", top: 2}}>
+      <AppBar position="fixed" sx={{ backgroundColor: "black", color: "black", boxShadow: "none", top: 2}}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between", padding: '0 8px' }}>
         <Box sx={{ display: "flex", gap: "20px" }}> {/* Increased gap for better spacing */}
           <Link to="/" style={linkStyle}>

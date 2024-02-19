@@ -1,41 +1,36 @@
 .parent-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-  padding: 20px;
-  background-color: #f2f7fc; /* Lighter blue background */
+  align-items: center; /* Adjusted to center since the founder text moved up */
+  width: 80%;
+  margin: 5px auto; /* Center the container and give top & bottom margin */
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #ffffff; /* Set text color to white for better visibility */
 }
 
 .over-container {
   display: flex;
-  flex-direction: column; /* This stacks children vertically */
-  align-items: center; /* This centers children horizontally */
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  margin-bottom: 20px; /* Add some space between this container and the one below */
+  margin-bottom: 10px; /* Space between this container and the next */
 }
 
-
-.left-container,
+/* .left-container,  */
 .right-container {
-  width: 80%; /* Adjust this value as needed for proper sizing */
-  margin: 10px 0; /* This adds spacing between the stacked elements */
-  padding: 20px;
-  background-color: #fff;
+  width: 80%;
+  margin: 5px 0;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
 
-.founder-text {
-  color: #333;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-h3 {
-  color: #005b96;
-  margin-bottom: 10px;
+.founder-text, h3 {
+  text-align: center;
 }
 
 .under-container {
@@ -45,32 +40,25 @@ h3 {
 }
 
 a {
-  color: #005b96;
+  color: #ffffff;
   text-decoration: none;
   padding: 10px 15px;
-  background-color: #e6f0f8;
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 a:hover {
-  background-color: #d1e4f2;
+  background-color: rgba(255, 255, 255, 0.288);
+  color: #dddddd;
 }
 
 @media (max-width: 850px) {
-  .over-container {
-    flex-direction: column;
-    margin: 10px 0;
+  .parent-container, .over-container, .left-container, .right-container {
+    width: 90%; /* Adjust for mobile */
+    padding: 10px;
+    margin: 5px 0;
   }
-
-
-  @media (max-width: 850px) {
-    .left-container,
-    .right-container {
-      width: 90%; /* You might want to make the containers wider on mobile */
-    }
-  }
-  
 
   .founder-text {
     text-align: justify;
