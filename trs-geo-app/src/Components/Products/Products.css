@@ -39,12 +39,12 @@
 
 /* Styling the search section */
 .search-section {
-  width: 70%;
+  width: 80%;
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-top: 0px;
-  margin-left: 15px;
+  margin-left: 10px;
   margin-bottom: 10px;
 }
 
@@ -92,7 +92,9 @@
   overflow-y: auto;
   max-height: calc(100vh - 90px);
   flex: 2;
-  margin-bottom: env(safe-area-inset-bottom);
+  margin-bottom: 30px;
+  /* margin-bottom: env(safe-area-inset-bottom); */
+
 
 }
 

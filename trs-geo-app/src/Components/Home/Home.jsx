@@ -23,8 +23,8 @@ const Home = (props) => {
             <div className="text-container"> {/* Added container for text */}
       <h3>TRS Employer API Search</h3>
       <p className="founder-text">
-        This is an API database you can use to find employers in your area who pay into the teacher retirement system. 
-        Please verify any and all information as it could be outdated and incorrect.
+        This is an database-directory of employers who pay into the Texas Teacher Retirement System.
+        Please verify any and all information as it could be outdated and incorrect. This list may not be comprehensive.
       </p>
       </div>
 
