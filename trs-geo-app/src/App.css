@@ -32,9 +32,10 @@ html, body {
 
 .products-container {
   padding-top: 70px; /* Adjust this value based on the height of your navigation bar */
+  margin-bottom: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
-
-
 
 /* /* Base styles */
 html, body, #root {
