@@ -44,6 +44,7 @@ html, body, #root {
   width: 100%;
   overflow-x: hidden;
   padding-top: 75px;
+  background-color: #2db7b1;
   /* min-height: 100%; */
 }
 
