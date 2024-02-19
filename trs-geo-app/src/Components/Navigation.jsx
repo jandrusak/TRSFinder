@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 const MenuAppBar = () => {
   const linkStyle = {
     textDecoration: "none",
-    color: "#30AD23",
+    color: "white",
     //  "#35845c", 
      // Keeping the green color you like
     flexGrow: 1,
@@ -28,7 +28,7 @@ const MenuAppBar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ backgroundColor: "black", color: "black", boxShadow: "none", top: 2}}>
+      <AppBar position="fixed" sx={{ backgroundColor: "#2db7b1", color: "#2db7b1", boxShadow: "none", top: 0}}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between", padding: '0 8px' }}>
         <Box sx={{ display: "flex", gap: "20px" }}> {/* Increased gap for better spacing */}
           <Link to="/" style={linkStyle}>
