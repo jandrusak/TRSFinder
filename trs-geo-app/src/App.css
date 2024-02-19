@@ -23,13 +23,28 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevents horizontal scrolling */
-  /* padding-top: 15px; */
+  overflow-x: hidden;
+  padding-top: 15px;
+  overflow-y: hidden; 
+    /* Hide vertical scrollbar */
 
 }
 
 .products-container {
   padding-top: 70px; /* Adjust this value based on the height of your navigation bar */
+}
+
+
+
+/* /* Base styles */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding and border are included within the element's dimensions */
+  width: 100%;
+  overflow-x: hidden;
+  padding-top: 75px;
+  /* min-height: 100%; */
 }
 
 
@@ -40,14 +55,6 @@ html, body {
 }
 
 
-/* /* Base styles */
-html, body, #root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  padding-top: 25px;
-}
 
 /* Adjusting min-height for mobile devices */
 @media (max-width: 383px) {

@@ -8,19 +8,6 @@ const Products = () => {
   const [search, setSearch] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // Fetch products based on the search query
-  // const fetchProducts = async () => {
-  //   if (search.trim()) {
-  //         const query = `?search=${encodeURIComponent(search)}`;
-  //         try {
-  //                   // axios.get("https://trsfinder-backend.onrender.com/Products")
-  //           const response = await axios.get(`http://localhost:4001/Products${query}`);
-  //           setProducts(response.data);
-  //         } catch (error) {
-  //                 console.error('Error fetching products:', error);
-  //             }
-  //     }
-  //   }
 
   const fetchProducts = async () => {
     const query = search.trim() ? `?search=${encodeURIComponent(search)}` : "";

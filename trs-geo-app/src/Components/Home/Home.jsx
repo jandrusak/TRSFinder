@@ -7,7 +7,8 @@ const Home = (props) => {
   const parentContainerStyle = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    // backgroundPosition: 'center top -330px',
+    backgroundPosition: 'center 44%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

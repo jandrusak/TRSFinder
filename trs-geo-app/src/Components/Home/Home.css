@@ -10,7 +10,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: #ffffff; /* Set text color to white for better visibility */
-  /* min-height: 100vh; */
+  min-height: 100vh;
 }
 
 .over-container {
@@ -38,7 +38,7 @@
   width: 80%;
   margin: 5px 0;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #ffffff33;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }

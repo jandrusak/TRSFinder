@@ -33,7 +33,7 @@ const MenuAppBar = () => {
           backgroundColor: "#2db7b1",
           color: "#2db7b1",
           boxShadow: "none",
-          top: 0
+          top: 6
         }}
       >
         <Toolbar
