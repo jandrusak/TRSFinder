@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import { Link } from "react-router-dom"
 
 const Home = (props) => {
   return (
@@ -12,12 +13,12 @@ const Home = (props) => {
         Please verify any and all information as it could be outdated and incorrect.
       </p>
     </div>
-    <div className="right-container">
+    {/* <div className="right-container">
       <p>Additional content or images can go here</p>
-    </div>
+    </div> */}
   </div>
   <div className="under-container">
-    <a href="/products">See Employers</a>
+  <Link to="/products">See Employers</Link>
   </div>
 </div>
 );
