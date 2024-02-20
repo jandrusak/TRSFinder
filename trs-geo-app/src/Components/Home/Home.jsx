@@ -21,10 +21,9 @@ const Home = (props) => {
   return (
     <div className="parent-container" style={parentContainerStyle}>
             <div className="text-container"> {/* Added container for text */}
-      <h3>TRS Employer API Search</h3>
+      <h3>TRS Employer Finder</h3>
       <p className="founder-text">
-        This is an database-directory of employers who pay into the Texas Teacher Retirement System.
-        Please verify any and all information as it could be outdated and incorrect. This list may not be comprehensive.
+This resource lists employers contributing to the Texas Teacher Retirement System. Users are encouraged to validate the information, which may not be current or complete.
       </p>
       </div>
 

@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column; /* or row, depending on your layout */
   height: 100vh;
+  justify-content: flex-start;
 }
 
 .content-box {
@@ -40,15 +41,26 @@
 }
 
 /* Styling the search section */
+
 .search-section {
   width: 80%;
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 105px;
+  margin-top: 110px; /* Adjust if needed to position correctly relative to the top of the viewport or any header/navbar */
   margin-left: 10px;
-  margin-bottom: 0px;
+  margin-bottom: -10px;
 }
+
+/* .search-section {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 125px;
+  margin-left: 10px;
+  margin-bottom: -10px;
+} */
 
 .search-section input {
   flex-grow: 1;
@@ -199,7 +211,17 @@ html, body, #root{
   .product-details {
     margin-top: 20px;
   }
-
+  @media (min-width: 384px) {
+    .parent-container {
+      padding-top: 180px; /* Adjust based on the total height of the fixed search section */
+    }
+  }
+  
+  @media (max-width: 383px) {
+    .content {
+      padding-top: 250px; /* Example adjustment for smaller screens */
+    }
+  }
   
 }
 
