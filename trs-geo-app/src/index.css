@@ -38,3 +38,9 @@ html, body {
     background-color: #2db7b1; 
   }
 }
+
+@media (max-width: 768px) {
+  body, #root {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+}
