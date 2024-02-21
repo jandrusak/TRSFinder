@@ -62,7 +62,6 @@ a {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* margin-bottom: 10px; */
 }
 
 .product-item {
@@ -94,6 +93,11 @@ a {
   }
 
   .employer-list, .product-details {
-    padding-bottom: env(safe-area-inset-bottom, 20px);
+    padding-bottom: env(safe-area-inset-bottom);
   }
+
+  /* .employer-list {
+    margin-bottom: 20px;
+  } */
+
 }
