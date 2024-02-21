@@ -19,7 +19,7 @@ body {
   min-height: 100vh;
   background-color: #2db7b1; 
   padding-top: env(safe-area-inset-top) ;
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom, 40px);
   padding-left: env(safe-area-inset-left);
   padding-right:env(safe-area-inset-right) ;
 
@@ -36,11 +36,5 @@ html, body {
   :root {
     color: #213547; 
     background-color: #2db7b1; 
-  }
-}
-
-@media (max-width: 768px) {
-  body, #root {
-    padding-bottom: env(safe-area-inset-bottom, 20px);
   }
 }
