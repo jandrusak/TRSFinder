@@ -48,6 +48,10 @@ body, html, #root {
   cursor: pointer;
 }
 
+a {
+  background-color: blue;
+}
+
 .search-section button:hover {
   background-color: #2c6e49;
 }
