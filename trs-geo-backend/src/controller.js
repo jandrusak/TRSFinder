@@ -3,7 +3,6 @@ let db = require("./db");
 let getAllProducts = function (req, res) {
     let search = req.query.search || '';
     let sql = `SELECT * FROM Products WHERE
-                name LIKE ? OR
                 city LIKE ? OR 
                 county LIKE ? OR 
                 zip LIKE ? OR 

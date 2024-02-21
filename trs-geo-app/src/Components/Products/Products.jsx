@@ -66,7 +66,7 @@ const Products = () => {
       <div className="search-section">
         <input
           type="text"
-          placeholder="Search by Name, City, County, Zip, or District Name"
+          placeholder="Search by City, County, Zip, or District Name"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
