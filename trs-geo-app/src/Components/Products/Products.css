@@ -96,4 +96,8 @@ a {
     padding-bottom: calc(env(safe-area-inset-bottom) + 40px);
   }
 
+  .products-container {
+    margin-bottom: 40px;
+  }
+
 }
