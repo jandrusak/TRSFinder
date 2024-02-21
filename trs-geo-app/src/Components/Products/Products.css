@@ -96,8 +96,8 @@ a {
     padding-bottom: env(safe-area-inset-bottom, 40px);
   }
 
-  /* .employer-list {
-    margin-bottom: 20px;
-  } */
+  .employer-list {
+    margin-bottom: 30px;
+  }
 
 }
