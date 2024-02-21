@@ -46,6 +46,17 @@ const Products = () => {
     setSelectedProductId(selectedProductId === productId ? null : productId);
   };
 
+
+  const formatUrl = (url) => {
+    if (!url) return '';
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    } else {
+      return `https://${url}`;
+    }
+  };
+
+
   useEffect(() => {
     fetchProducts();
   }, [search]);
@@ -72,7 +83,7 @@ const Products = () => {
                 <p>Address: {product.address}</p>
                 <p>City: {product.city}</p>
                 <p>Type: {product.type}</p>
-                <p>Website: <a href={product.website_address} target="_blank" rel="noopener noreferrer">Website</a></p>
+                <p>Website: <a href={formatUrl(product.website_address)} target="_blank" rel="noopener noreferrer">Website</a></p>
                 <p>Phone: {product.phone}</p>
                 <p>Zip: {product.zip}</p>
                 <p>County: {product.county}</p>
