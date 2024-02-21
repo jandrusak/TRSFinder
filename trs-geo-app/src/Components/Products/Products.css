@@ -93,11 +93,7 @@ a {
   }
 
   .employer-list, .product-details {
-    padding-bottom: env(safe-area-inset-bottom, 40px);
-  }
-
-  .employer-list {
-    margin-bottom: 70px;
+    padding-bottom: calc(env(safe-area-inset-bottom) + 40px);
   }
 
 }
