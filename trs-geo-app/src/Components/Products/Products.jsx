@@ -83,7 +83,7 @@ const Products = () => {
                 <p>Address: {product.address}</p>
                 <p>City: {product.city}</p>
                 <p>Type: {product.type}</p>
-                <p>Website: <a href={formatUrl(product.website_address)} target="_blank" rel="noopener noreferrer">Website</a></p>
+                <p>Website: <a href={formatUrl(product.website_address)} target="_blank" rel="noopener noreferrer">{product.website_address}</a></p>
                 <p>Phone: {product.phone}</p>
                 <p>Zip: {product.zip}</p>
                 <p>County: {product.county}</p>
